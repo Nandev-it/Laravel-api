@@ -10,15 +10,22 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
+    // public function index()
+    // {
+
+    //     $products = Product::all();
+    //     $count = count($products);
+    //     return response()->json([
+    //         'message' => ['Total products: ' . $count],
+    //         'data' => $products
+    //     ]);
+    // }
+
     public function index()
     {
+        $products = Product::latest()->get();
 
-        $products = Product::all();
-        $count = count($products);
-        return response()->json([
-            'message' => ['Total products: ' . $count],
-            'data' => $products
-        ]);
+        return response()->json($products);
     }
 
 
@@ -30,14 +37,26 @@ class ProductController extends Controller
         //
     }
 
-/**
+    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        return Product::create($request->all());
-    }
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required|numeric'
+        ]);
 
+        $product = \App\Models\Product::create([
+            'name' => $request->name,
+            'price' => $request->price
+        ]);
+
+        return response()->json([
+            'message' => 'Saved successfully',
+            'data' => $product
+        ]);
+    }
     /**
      * Display the specified resource.
      */

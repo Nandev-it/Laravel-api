@@ -16,4 +16,6 @@ Route::get('/test', function () {
     ]);
 });
 
+
+Route::post('/products', [ProductController::class, 'store']);
 Route::get('/products', [ProductController::class, 'index']);
