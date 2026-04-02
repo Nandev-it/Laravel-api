@@ -13,9 +13,8 @@ class ProductController extends Controller
     public function index()
     {
 
-    $products = Product::where('price', '>',5)->get();
-     $count = count($products);
-        // return Product::all();
+        $products = Product::all();
+        $count = count($products);
         return response()->json([
             'message' => ['Total products: ' . $count],
             'data' => $products
@@ -31,7 +30,7 @@ class ProductController extends Controller
         //
     }
 
-    /**
+/**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
