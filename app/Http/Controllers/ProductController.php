@@ -12,7 +12,14 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Product::all();
+
+    $products = Product::where('price', '>',5)->get();
+     $count = count($products);
+        // return Product::all();
+        return response()->json([
+            'message' => ['Total products: ' . $count],
+            'data' => $products
+        ]);
     }
 
 

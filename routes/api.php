@@ -15,3 +15,5 @@ Route::get('/test', function () {
         'message' => 'API working fine By Khem Sopheanan'
     ]);
 });
+
+Route::get('/products', [ProductController::class, 'index']);
