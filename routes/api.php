@@ -12,6 +12,6 @@ Route::get('/user', function (Request $request) {
 Route::apiResource('products', ProductController::class);
 Route::get('/test', function () {
     return response()->json([
-        'message' => 'API working fine By Khem Sopheanan '
+        'message' => 'API working fine By Khem Sopheanan'
     ]);
 });
